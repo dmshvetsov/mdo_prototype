@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" ng-app="mdoClient">
+<head>
+  <meta charset="UTF-8" />
+  <title>MDO</title>
+  <link rel="stylesheet" href="/foundation.min.css" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body ng-controller="mdoController">
+  
+  <div class="row">
+    <div class="large-12 columns text-center">
+      {{ duelState }}
+  </div>
+  
+  <div class="row">
+    <div class="large-6 columns">
+      <ul class="pricing-table">
+        <li class="title">
+          {{ thisPlayerId }}
+        </li>
+        <li class="price">
+          {{ thisPlayer.hp }}
+        </li>
+        <li class="description">
+          Mage level 1 (you)
+        </li>
+        <li class="bullet-item">
+          {{ castSpell }}
+        </li>
+      </ul>
+    </div>
+    <div class="large-6 columns">
+      <ul class="pricing-table">
+        <li class="title">
+          {{ opponentPlayerId }}
+        </li>
+        <li class="price">
+          {{ opponentPlayer.hp }}
+        </li>
+        <li class="description">
+          Mage level 1 (opponent)
+        </li>
+        <li class="bullet-item">
+          
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="row" ng-if="counter">
+    <div class="panel callout">
+      {{ counter }}
+    </div>
+  </div>
+  
+  <div class="row" ng-if="result">
+    <div class="panel callout">
+      {{ result }}
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="panel">
+      <div ng-repeat="log in logs"><small>{{ log }}</small></div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="large-12 columns">
+      <button class="tiny button" ng-repeat="skill in thisPlayer.skills" ng-click="nextSpell(skill)">{{ skill }}</button>
+    </div>
+  </div>
+  
+  <div class="row">
+    <dic class="large-12 columns">
+      <div class="secondary label">
+        Duel id: {{ duelId }}
+      </div>
+    </dic>
+  </div>
+  
+  <script src="/angular.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/underscore-min.js"></script>
+  <script src="/app.js"></script>
+  <script src="/services.js"></script>
+  <script src="/client.js"></script>
+  <script src="/filters.js"></script>
+  <script src="/directives.js"></script>
+</body>
+</html>

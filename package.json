@@ -1,0 +1,24 @@
+{
+  "name": "mdo_prototype",
+  "version": "0.0.0",
+  "description": "Magical Duel Online game prototype.",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "socket.io": "0.9",
+    "node-uuid": "1.4.1",
+    "underscore": "1.5.2"
+  },
+  "keywords": [
+    "online",
+    "game",
+    "prototype",
+    "magic",
+    "duel"
+  ],
+  "author": "shvetsovdm",
+  "license": "MIT"
+}
