@@ -8,12 +8,12 @@
 </head>
 <body ng-controller="mdoController">
   
-  <div class="progress progress-custom">
+  <div id="progress-bar" class="progress progress-custom">
     <span class="meter" style="width: {{ counter / 5 * 100 }}%"></span>
   </div>
   
-  <div class="row">
-    <div class="large-4 columns text-left">
+  <div id="upper-first-panel" class="row">
+    <div class="medium-4 columns text-left">
       <span class="label">
         {{ thisPlayerId }}
       </span>
@@ -21,12 +21,12 @@
         you
       </span>
     </div>
-    <div class="large-4 columns text-center">
+    <div class="medium-4 columns text-center">
       <strong>
         {{ duelState }}
       </strong>
     </div>
-    <div class="large-4 columns text-right">
+    <div class="medium-4 columns text-right">
       <span class="label secondary">
         opponent
       </span>
@@ -36,55 +36,48 @@
     </div>
   </div>
   
-  <div class="row">
-    <div class="large-4 columns text-left">
+  <div id="upper-second-panel" class="row">
+    <div class="medium-4 columns text-left">
       <h2>
         {{ thisPlayer.hp }} HP
       </h2>
     </div>
-    <div class="large-4 columns text-center" ng-if="nRound">
+    <div class="medium-4 columns text-center" ng-if="nRound">
       <strong>
         {{ nRound }}
       </strong>
     </div>
-    <div class="large-4 columns text-right">
+    <div class="medium-4 columns text-right">
       <h2>
         {{ opponentPlayer.hp }} HP
       </h2>
     </div>
   </div>
   
-  <div class="row">
-    <div class="large-12 columns text-center">
-      <p>
-        {{ castSpell }} 
-      </p>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="large-8 large-push-2 columns">
+  <div class="info-panel" class="row" ng-if="!result">
+    <div class="medium-8 medium-push-2 columns">
       <div data-alert class="alert-box warning text-center">
-        Round calculation here
+        <span ng-if="castSpell">{{ castSpell }}</span>
+        <span ng-if="!castSpell">Round calculation here</span>
       </div>
     </div>
   </div>
   
-  <div class="row" ng-if="result">
-    <div class="large-8 large-push-2 columns">
+  <div class="info-panel" class="row" ng-if="result">
+    <div class="medium-8 medium-push-2 columns">
       <div data-alert class="alert-box success text-center">
         {{ result }}
       </div>
     </div>
   </div>
   
-  <div class="row">
-    <div class="large-6 columns">
+  <div id="footer" class="row">
+    <div class="medium-6 columns">
       <button class="tiny button spell-button" ng-repeat="skill in thisPlayer.skills" ng-click="nextSpell(skill)">{{ skill }}</button>
     </div>
-    
-    <div class="large-6 columns">
-      <div class="panel">
+
+    <div class="medium-6 columns">
+      <div id="log" class="panel">
         <div ng-repeat="log in logs">
           <small>
             {{ log }}
@@ -93,18 +86,19 @@
       </div>
     </div>
   </div>
-  
-  <div class="row">
-    <dic class="large-12 columns">
+
+  <div id="under-footer" class="row">
+    <dic class="medium-12 columns text-center">
       <div class="secondary label">
         Duel id: {{ duelId }}
       </div>
     </dic>
   </div>
   
+  <script src="/jquery.js"></script>
+  <script src="/underscore-min.js"></script>
   <script src="/angular.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="/underscore-min.js"></script>
   <script src="/app.js"></script>
   <script src="/services.js"></script>
   <script src="/client.js"></script>
