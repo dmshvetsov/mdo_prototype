@@ -8,67 +8,89 @@
 </head>
 <body ng-controller="mdoController">
   
+  <div class="progress progress-custom">
+    <span class="meter" style="width: {{ counter / 5 * 100 }}%"></span>
+  </div>
+  
+  <div class="row">
+    <div class="large-4 columns text-left">
+      <span class="label">
+        {{ thisPlayerId }}
+      </span>
+      <span class="label secondary">
+        you
+      </span>
+    </div>
+    <div class="large-4 columns text-center">
+      <strong>
+        {{ duelState }}
+      </strong>
+    </div>
+    <div class="large-4 columns text-right">
+      <span class="label secondary">
+        opponent
+      </span>
+      <span class="label alert">
+        {{ opponentPlayerId }}
+      </span>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="large-4 columns text-left">
+      <h2>
+        {{ thisPlayer.hp }} HP
+      </h2>
+    </div>
+    <div class="large-4 columns text-center" ng-if="nRound">
+      <strong>
+        {{ nRound }}
+      </strong>
+    </div>
+    <div class="large-4 columns text-right">
+      <h2>
+        {{ opponentPlayer.hp }} HP
+      </h2>
+    </div>
+  </div>
+  
   <div class="row">
     <div class="large-12 columns text-center">
-      {{ duelState }}
+      <p>
+        {{ castSpell }} 
+      </p>
+    </div>
   </div>
   
   <div class="row">
-    <div class="large-6 columns">
-      <ul class="pricing-table">
-        <li class="title">
-          {{ thisPlayerId }}
-        </li>
-        <li class="price">
-          {{ thisPlayer.hp }}
-        </li>
-        <li class="description">
-          Mage level 1 (you)
-        </li>
-        <li class="bullet-item">
-          {{ castSpell }}
-        </li>
-      </ul>
-    </div>
-    <div class="large-6 columns">
-      <ul class="pricing-table">
-        <li class="title">
-          {{ opponentPlayerId }}
-        </li>
-        <li class="price">
-          {{ opponentPlayer.hp }}
-        </li>
-        <li class="description">
-          Mage level 1 (opponent)
-        </li>
-        <li class="bullet-item">
-          
-        </li>
-      </ul>
-    </div>
-  </div>
-  
-  <div class="row" ng-if="counter">
-    <div class="panel callout">
-      {{ counter }}
+    <div class="large-8 large-push-2 columns">
+      <div data-alert class="alert-box warning text-center">
+        Round calculation here
+      </div>
     </div>
   </div>
   
   <div class="row" ng-if="result">
-    <div class="panel callout">
-      {{ result }}
+    <div class="large-8 large-push-2 columns">
+      <div data-alert class="alert-box success text-center">
+        {{ result }}
+      </div>
     </div>
   </div>
   
   <div class="row">
-    <div class="panel">
-      <div ng-repeat="log in logs"><small>{{ log }}</small></div>
+    <div class="large-6 columns">
+      <button class="tiny button spell-button" ng-repeat="skill in thisPlayer.skills" ng-click="nextSpell(skill)">{{ skill }}</button>
     </div>
-  </div>
-  
-  <div class="row">
-    <div class="large-12 columns">
-      <button class="tiny button" ng-repeat="skill in thisPlayer.skills" ng-click="nextSpell(skill)">{{ skill }}</button>
+    
+    <div class="large-6 columns">
+      <div class="panel">
+        <div ng-repeat="log in logs">
+          <small>
+            {{ log }}
+          </small>
+        </div>
+      </div>
     </div>
   </div>
   

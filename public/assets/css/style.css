@@ -1,3 +1,15 @@
-body {
-  margin-top: 20px;
+/**
+ * My customization for Foundation framework
+ */
+
+.spell-button {
+  margin-bottom: 0px;
+}
+
+.progress-custom {
+  background-color: #f6f6f6;
+  height: 0.25rem;
+  border: none;
+  padding: 0.025rem;
+  margin-bottom: 1rem;
 }

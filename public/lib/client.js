@@ -3,6 +3,7 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   $scope.opponentPlayerId   = 'waiting for';
   $scope.castSpell          = null;
   $scope.duelId             = '';
+  $scope.nRound             = null;
   $scope.counter            = null;
   $scope.logs               = ['join to DUEL'];
   $scope.result             = null;
@@ -44,33 +45,26 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   
   
   
+  /**
+   * Duel countdown to start
+   */
   socket.on('countdown', function (duel) {
-    /**
-     * Duel countdown to start
-     */
-    
-    $scope.counter = duel.refreshIn;
     $scope.logs.push('get ready, COUNTDOWN');
-    $scope.countdown = function () {
-      $scope.counter--;
-      if ($scope.counter > 0) {
-        $timeout($scope.countdown, 1000);
-      } else {
-        $scope.counter = null;
-      }
-    }
+    $scope.counter = duel.refreshIn;
     $timeout($scope.countdown, 1000);
   });
   
   
   
-  socket.on('round', function (round) {
-    /**
-     * Handle each round Duel data
-     */
+  /**
+   * Handle each round Duel data
+   */
+  socket.on('round', function (duel) {
+    var round = _.last(duel.rounds);
     
     $scope.pushToLog(round);
     $scope.duelState = 'Round';
+    $scope.nRound = duel.nRound;
     
     $scope.thisPlayer         = round[$scope.thisPlayerId];
     $scope.opponentPlayer     = round[$scope.opponentPlayerId];
@@ -112,4 +106,15 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
       $scope.logs.push('OPPONENT ' + entry); 
     });
   };
+  
+  $scope.countdown = function () {
+    $scope.counter--;
+    if ($scope.counter > 0) {
+      $timeout($scope.countdown, 1000);
+    } else {
+      $scope.counter = null;
+      $scope.castSpell = 'select your spell';
+      $scope.$digest();
+    }
+  }
 }]);
