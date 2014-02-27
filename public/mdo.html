@@ -14,10 +14,10 @@
   
   <div id="upper-first-panel" class="row">
     <div class="medium-4 columns text-left">
-      <span class="label">
+      <span class="label secondary">
         {{ thisPlayerId }}
       </span>
-      <span class="label secondary">
+      <span class="label">
         you
       </span>
     </div>
@@ -27,10 +27,10 @@
       </strong>
     </div>
     <div class="medium-4 columns text-right">
-      <span class="label secondary">
+      <span class="label alert">
         opponent
       </span>
-      <span class="label alert">
+      <span class="label secondary">
         {{ opponentPlayerId }}
       </span>
     </div>
@@ -90,6 +90,12 @@
         Duel id: {{ duelId }}
       </div>
     </dic>
+  </div>
+  
+  <div id="mask" class="reveal-modal-bg" style="display: {{ (modalMessage == null) ? 'none' : 'block' }}">
+    <strong>
+      {{ modalMessage }}
+    </strong>
   </div>
   
   <script src="/underscore-min.js"></script>

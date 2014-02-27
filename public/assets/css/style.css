@@ -29,6 +29,13 @@
   height: 25px;
 }
 
+#mask {
+  background: #ffffff;
+  opacity: 1;
+  margin-top: 40px;
+  text-align: center;
+}
+
 /**
  * My customization for Foundation framework
  */
