@@ -54,18 +54,15 @@
     </div>
   </div>
   
-  <div class="info-panel" class="row" ng-if="!result">
-    <div class="medium-8 medium-push-2 columns">
-      <div data-alert class="alert-box warning text-center">
-        <span ng-if="castSpell">{{ castSpell }}</span>
-        <span ng-if="!castSpell">Round calculation here</span>
+  <div id="info-panel" class="row">
+    <div class="medium-8 medium-centered columns">
+      <div data-alert class="alert-box warning text-center" ng-if="!result && !castSpell">
+        Round calculation here
       </div>
-    </div>
-  </div>
-  
-  <div class="info-panel" class="row" ng-if="result">
-    <div class="medium-8 medium-push-2 columns">
-      <div data-alert class="alert-box success text-center">
+      <div data-alert class="alert-box warning text-center" ng-if="!result && castSpell">
+        {{ castSpell }}
+      </div>
+      <div data-alert class="alert-box success text-center" ng-if="result">
         {{ result }}
       </div>
     </div>
@@ -95,7 +92,6 @@
     </dic>
   </div>
   
-  <script src="/jquery.js"></script>
   <script src="/underscore-min.js"></script>
   <script src="/angular.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
