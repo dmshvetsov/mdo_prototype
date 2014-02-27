@@ -1,6 +1,6 @@
 app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scope, $timeout, socket) {
-  $scope.thisPlayerId       = 'waiting for';
-  $scope.opponentPlayerId   = 'waiting for';
+  $scope.thisPlayerId       = 'waiting for player';
+  $scope.opponentPlayerId   = 'waiting for player';
   $scope.castSpell          = null;
   $scope.duelId             = '';
   $scope.nRound             = null;
@@ -34,11 +34,10 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   
   
   
+  /**
+   * Wait for opponent
+   */
   socket.on('wait', function (duel) {
-    /**
-     * Wait for opponent
-     */
-    
     $scope.thisPlayer         = duel.players[$scope.thisPlayerId];
     $scope.duelState          = duel.state;
   });
@@ -51,7 +50,7 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   socket.on('countdown', function (duel) {
     $scope.logs.push('get ready, COUNTDOWN');
     $scope.counter = duel.refreshIn;
-    $timeout($scope.countdown, 1000);
+    $scope.countdown();
   });
   
   
@@ -62,13 +61,30 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   socket.on('round', function (duel) {
     var round = _.last(duel.rounds);
     
+    $scope.duelState          = 'Round';
+    $scope.nRound             = duel.nRound;
+    $scope.castSpell          = 'select your spell';
+    
+    $scope.thisPlayer         = round[$scope.thisPlayerId];
+    $scope.opponentPlayer     = round[$scope.opponentPlayerId];
+    
+    $scope.countdown();
+  });
+  
+  
+  
+  /**
+   * Handle round calculation
+   */
+  socket.on('calculate', function (duel) {
+    var round = _.last(duel.rounds);
+    
     $scope.pushToLog(round);
-    $scope.duelState = 'Round';
+    $scope.duelState = 'Round calculation';
     $scope.nRound = duel.nRound;
     
     $scope.thisPlayer         = round[$scope.thisPlayerId];
     $scope.opponentPlayer     = round[$scope.opponentPlayerId];
-    $scope.castSpell          = 'select your spell';
   });
   
   
@@ -94,6 +110,8 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
     });
   };
   
+  
+  
   $scope.pushToLog = function (round) {
     var thisPlayerLog       = round[$scope.thisPlayerId].log,
         opponentLog         = round[$scope.opponentPlayerId].log;
@@ -107,14 +125,17 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
     });
   };
   
+  
+  
   $scope.countdown = function () {
-    $scope.counter--;
+    var thisCountdown;
     if ($scope.counter > 0) {
-      $timeout($scope.countdown, 1000);
+      $scope.counter -= 0.10;
+      thisCountdown = $timeout($scope.countdown, 100);
     } else {
-      $scope.counter = null;
-      $scope.castSpell = 'select your spell';
+      $scope.counter = 5;
       $scope.$digest();
+      $timeout.cancel(thisCountdown);
     }
-  }
+  };
 }]);
