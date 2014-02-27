@@ -1,13 +1,13 @@
-#Magic duel game prototype
+#Magic duel online game prototype
 
-This is a try to make great game about magical duels, with power of node.js, socket.io and angular.js.
+This is a try to make a great game about magical duels, with power of node.js, socket.io and angular.js.
 
 ##Core ideas
 
-- the game is turn based but, each turn players make move simultaneously;
+- the game is turn-based, but each round players make simultaneously;
 - the principle of rock, scissors, paper;
-- health and mana is the same, if you have power/health you can resist if not you lose;
-- this is RPG, so you can grown your own mage.
+- a health and a mana is the same, if you have mana/health you can resist if not you lose;
+- this is RPG, so you can grow your own magician.
 
 ##Project structure
 
@@ -21,10 +21,10 @@ This is a try to make great game about magical duels, with power of node.js, soc
 ##How to use
 
 1. clone this repo
-2. cd mdo_prototype
-3. npm install
-4. node app.js
-5. open in browser localhost:8080
+2. type in terminal/cmd: cd mdo_prototype
+3. type in terminal/cmd: npm install
+4. type in terminal/cmd: node app.js
+5. open in browser: localhost:8080
 6. explore the app and check the documentation
 
 ##License
