@@ -40,6 +40,14 @@
  * My customization for Foundation framework
  */
 
+.text-alert {
+  color: #f04124;
+}
+
+.text-primary-ligth {
+  color: #a0d3e8;
+}
+
 .spell-button {
   margin-bottom: 0px;
 }

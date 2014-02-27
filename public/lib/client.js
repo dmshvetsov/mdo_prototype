@@ -7,7 +7,7 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   $scope.counter            = null;
   $scope.logs               = ['join to DUEL'];
   $scope.result             = null;
-  $scope.modalMessage       = 'connecting...';
+  $scope.modalMessage       = 'entering the duel...';
   
   socket.on('connect', function () {
     $scope.thisPlayerId = this.socket.sessionid;
@@ -84,9 +84,16 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
     $scope.pushToLog(round);
     $scope.duelState = 'Round calculation';
     $scope.nRound = duel.nRound;
+    $scope.castSpell = null;
+    
+    var thisPlayerWasHp = $scope.thisPlayer.hp,
+        opponentPlayerWasHp = $scope.opponentPlayer.hp;
     
     $scope.thisPlayer         = round[$scope.thisPlayerId];
     $scope.opponentPlayer     = round[$scope.opponentPlayerId];
+    
+    $scope.thisPlayer.loseHp = round[$scope.thisPlayerId].hp - thisPlayerWasHp;
+    $scope.opponentPlayer.loseHp = round[$scope.opponentPlayerId].hp - opponentPlayerWasHp;
   });
   
   

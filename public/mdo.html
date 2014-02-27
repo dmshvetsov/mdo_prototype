@@ -27,7 +27,7 @@
       </strong>
     </div>
     <div class="medium-4 columns text-right">
-      <span class="label alert">
+      <span class="label">
         opponent
       </span>
       <span class="label secondary">
@@ -39,7 +39,7 @@
   <div id="upper-second-panel" class="row">
     <div class="medium-4 columns text-left">
       <h2>
-        {{ thisPlayer.hp }} HP
+        {{ thisPlayer.hp }} HP <small class="text-alert" ng-if="thisPlayer.loseHp">{{ thisPlayer.loseHp }}</small>
       </h2>
     </div>
     <div class="medium-4 columns text-center" ng-if="nRound">
@@ -49,14 +49,14 @@
     </div>
     <div class="medium-4 columns text-right">
       <h2>
-        {{ opponentPlayer.hp }} HP
+        <small class="text-alert" ng-if="opponentPlayer.loseHp">{{ opponentPlayer.loseHp }}</small> {{ opponentPlayer.hp }} HP
       </h2>
     </div>
   </div>
   
   <div id="info-panel" class="row">
     <div class="medium-8 medium-centered columns">
-      <div data-alert class="alert-box warning text-center" ng-if="!result && !castSpell">
+      <div data-alert class="alert-box secondary text-center" ng-if="!result && !castSpell">
         Round calculation here
       </div>
       <div data-alert class="alert-box warning text-center" ng-if="!result && castSpell">
