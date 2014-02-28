@@ -17,6 +17,10 @@ app.get('/duels', function (req, res) {
   res.json(core.setOfDuels);
 });
 
+app.get('/played', function (req, res) {
+  res.json(core.setOfPlayedDuels);
+});
+
 app.get('/*', function (req, res) {
   res.sendfile(__dirname + '/public/404.html');
 });
