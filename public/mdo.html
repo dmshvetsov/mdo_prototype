@@ -39,7 +39,7 @@
   <div id="upper-second-panel" class="row">
     <div class="medium-4 columns text-left">
       <h2>
-        {{ thisPlayer.hp }} HP <small class="text-alert" ng-if="thisPlayer.loseHp">{{ thisPlayer.loseHp }}</small>
+        {{ thisPlayer.hp }} HP <small class="text-alert" ng-if="thisPlayer.totalDamageRecive">-{{ thisPlayer.totalDamageRecive }}</small> <small class="text-ligth" ng-if="thisPlayer.totalSpellCost">-{{ thisPlayer.totalSpellCost }}</small>
       </h2>
     </div>
     <div class="medium-4 columns text-center" ng-if="nRound">
@@ -49,7 +49,7 @@
     </div>
     <div class="medium-4 columns text-right">
       <h2>
-        <small class="text-alert" ng-if="opponentPlayer.loseHp">{{ opponentPlayer.loseHp }}</small> {{ opponentPlayer.hp }} HP
+        <small class="text-alert" ng-if="opponentPlayer.totalDamageRecive">-{{ opponentPlayer.totalDamageRecive }}</small> <small class="text-ligth" ng-if="opponentPlayer.totalSpellCost">-{{ opponentPlayer.totalSpellCost }}</small> {{ opponentPlayer.hp }} HP
       </h2>
     </div>
   </div>
