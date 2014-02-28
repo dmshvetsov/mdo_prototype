@@ -7,6 +7,7 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   $scope.counter            = null;
   $scope.logs               = ['join to DUEL'];
   $scope.result             = null;
+  $scope.disableInterface   = true;
   
   socket.on('connect', function () {
     $scope.thisPlayerId = this.socket.sessionid;
@@ -61,6 +62,7 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   socket.on('round', function (duel) {
     var round = _.last(duel.rounds);
     
+    $scope.disableInterface   = false;
     $scope.duelState          = 'Round';
     $scope.nRound             = duel.nRound;
     $scope.castSpell          = 'select your spell';
@@ -79,6 +81,8 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   socket.on('calculate', function (duel) {
     var round = _.last(duel.rounds);
     
+    $scope.disableInterface   = true;
+    forAllRemoveClass('button-selected');
     $scope.pushToLog(round);
     $scope.duelState = 'Round calculation';
     $scope.nRound = duel.nRound;
@@ -101,8 +105,10 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
     $scope.opponentPlayerId   = 'disconnected';
   });
   
-  $scope.nextSpell = function (spell) {
+  $scope.nextSpell = function (spell, $event) {
+    forAllRemoveClass('button-selected');
     $scope.castSpell = spell;
+    addClass($event.target, 'button-selected');
     socket.emit('castSpell', {
       duelId: $scope.duelId,
       playerId: $scope.thisPlayerId,
@@ -136,6 +142,21 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
       $scope.counter = 5;
       $scope.$digest();
       $timeout.cancel(thisCountdown);
+    }
+  };
+  
+  function addClass(element, cssClass) {
+    element.classList.add(cssClass);
+  };
+  
+  function forAllRemoveClass(cssClass) {
+    var elements = document.getElementsByClassName(cssClass),
+        elemetsLength = elements.length;
+    
+    if (elemetsLength == 0) return;
+    
+    for (var i = 0; i < elemetsLength; i++) {
+      elements[i].classList.remove(cssClass);
     }
   };
 }]);

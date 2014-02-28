@@ -70,7 +70,7 @@
   
   <div id="footer" class="row">
     <div class="medium-6 columns">
-      <button class="tiny button spell-button" ng-repeat="skill in thisPlayer.skills" ng-click="nextSpell(skill)">{{ skill }}</button>
+      <button class="tiny button selected spell-button" ng-disabled="disableInterface" ng-repeat="skill in thisPlayer.skills" ng-click="nextSpell(skill, $event)">{{ skill }}</button>
     </div>
 
     <div class="medium-6 columns">

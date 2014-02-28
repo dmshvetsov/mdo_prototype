@@ -49,6 +49,15 @@
  * My customization for Foundation framework
  */
 
+button.button-selected, .button.button-selected {
+  background-color: #f08a24;
+  border-color: #de770f;
+  color: white; }
+  button.button-selected:hover, button.button-selected:focus, .button.button-selected:hover, .button.button-selected:focus {
+    background-color: #f08a24; }
+  button.button-selected:hover, button.button-selected:focus, .button.button-selected:hover, .button.button-selected:focus {
+    color: white; }
+
 .text-alert {
   color: #f04124;
 }
