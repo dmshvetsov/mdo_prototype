@@ -1,3 +1,7 @@
+/**
+ * Duel layout style
+ */
+
 #progress-bar {
   height: 5px;
   padding: 0px;
@@ -29,12 +33,17 @@
   height: 25px;
 }
 
-#mask {
-  background: #ffffff;
-  opacity: 1;
-  margin-top: 40px;
-  text-align: center;
+
+
+/**
+ * Specific angular style
+ */
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
+
+
 
 /**
  * My customization for Foundation framework

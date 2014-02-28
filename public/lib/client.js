@@ -7,7 +7,6 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   $scope.counter            = null;
   $scope.logs               = ['join to DUEL'];
   $scope.result             = null;
-  $scope.modalMessage       = 'entering the duel...';
   
   socket.on('connect', function () {
     $scope.thisPlayerId = this.socket.sessionid;
@@ -31,7 +30,6 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
     
     $scope.duelState = duel.state;
     $scope.duelId = duel.id;
-    $scope.modalMessage = null;
   });
   
   

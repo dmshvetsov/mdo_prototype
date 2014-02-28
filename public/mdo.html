@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/foundation.min.css" />
   <link rel="stylesheet" href="/style.css" />
 </head>
-<body ng-controller="mdoController">
+<body ng-controller="mdoController" ng-cloak>
   
   <div id="progress-bar" class="progress progress-custom">
     <span class="meter" style="width: {{ counter / 5 * 100 }}%"></span>
@@ -90,12 +90,6 @@
         Duel id: {{ duelId }}
       </div>
     </dic>
-  </div>
-  
-  <div id="mask" class="reveal-modal-bg" style="display: {{ (modalMessage == null) ? 'none' : 'block' }}">
-    <strong>
-      {{ modalMessage }}
-    </strong>
   </div>
   
   <script src="/underscore-min.js"></script>
