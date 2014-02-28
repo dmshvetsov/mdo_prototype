@@ -75,7 +75,7 @@
 
     <div class="medium-6 columns">
       <div id="log" class="panel">
-        <div ng-repeat="log in logs">
+        <div ng-repeat="log in logs track by $index">
           <small>
             {{ log }}
           </small>

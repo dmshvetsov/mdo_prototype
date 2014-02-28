@@ -91,7 +91,6 @@ app.controller('mdoController', ['$scope', '$timeout', 'socket', function ($scop
   
   
   socket.on('result', function (duel) {
-    $scope.pushToLog(_.last(duel.rounds));
     $scope.result = ((duel.result.winner) ? duel.result.winner : 'No one') + ' won the Duel for ' + duel.nRound + ' Round(s)';
   });
   
