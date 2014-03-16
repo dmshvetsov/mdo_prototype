@@ -31,7 +31,7 @@ This is a try to make a great game about magical duels, with power of node.js, s
 
 The MIT License (MIT)
 
-Copyright (c) [2014] [Shvetsov Dmitry]
+Copyright (c) [2014] [Dmitry Shvetsov]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
