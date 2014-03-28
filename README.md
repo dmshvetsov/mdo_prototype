@@ -1,6 +1,6 @@
 #Magic duel online game prototype
 
-This is a try to make a great game about magical duels, with power of node.js, socket.io and angular.js.
+This is a try to make a great game about magical duels, with power of node.js, socket.io and angular.js. But this try fails because of the poor code design. Work on this prototype is finished.
 
 ##Core ideas
 
